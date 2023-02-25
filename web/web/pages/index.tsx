@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import Navbar from "../components/navbar"
+
 const Container = styled.div`
   width: 100%;
   background: white;
@@ -79,20 +81,10 @@ ul {
 `;
 
 export default function home() {
-  const [contents, setContents] = useState("");
-  const [counter, setCounter] = useState(0);
-
-  const increaseCounter = () => {
-    setCounter(counter + 1);
-  };
-
-  useEffect(() => {
-    setContents("Hello World");
-  }, [contents]);
 
   return (
     <Container>
-      <img src="/images/logo-better.png" alt="" />
+      <Navbar/>
       <h2>One stop destination to study together.</h2>
       <ul>
         <li><a href = "/spots">SPOTS</a></li>
