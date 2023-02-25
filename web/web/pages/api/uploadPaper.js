@@ -10,7 +10,7 @@ AWS.config.update({ signatureVersion: 'v4' })
 const myBucket = new AWS.S3({
     accessKeyId: process.env.SP_AWS_ACCESS_ID,
     secretAccessKey: process.env.SP_AWS_ACCESS_KEY,
-    params: { Bucket: process.env.SP_AWS_BUCKET },
+    params: { Bucket: process.env.SP_AWS_GRADE_BUCKET },
     region: REGION,
 })
 
