@@ -7,7 +7,14 @@ const REGION = process.env.SP_AWS_REGION;
 const URL_EXPIRATION_TIME = 300; // in seconds
 AWS.config.update({ signatureVersion: 'v4' })
 
-const myBucket = new AWS.S3({
+const rubricBucket = new AWS.S3({
+    accessKeyId: process.env.SP_AWS_ACCESS_ID,
+    secretAccessKey: process.env.SP_AWS_ACCESS_KEY,
+    params: { Bucket: process.env.SP_AWS_RUBRIC_BUCKET },
+    region: REGION,
+})
+
+const gradeBucket = new AWS.S3({
     accessKeyId: process.env.SP_AWS_ACCESS_ID,
     secretAccessKey: process.env.SP_AWS_ACCESS_KEY,
     params: { Bucket: process.env.SP_AWS_GRADE_BUCKET },
@@ -15,8 +22,8 @@ const myBucket = new AWS.S3({
 })
 
 
-function generatePreSignedPutUrl(key, fileType) {
-    let result = myBucket.getSignedUrlPromise('putObject', {
+function generatePreSignedPutUrl(bucket, key, fileType) {
+    let result = bucket.getSignedUrlPromise('putObject', {
         Key: key,
         ContentType: fileType,
         Expires: URL_EXPIRATION_TIME,
@@ -89,10 +96,19 @@ export default async (req, res) => {
         } else {
             //S3
             let fullyQualifiedName = await generateRecord(user_id)
-            await generatePreSignedPutUrl(fullyQualifiedName, body["fileType"]).then((url) => {
-                res.status(200)
-                res.json({ "signedUrl": url, 'fileName': fullyQualifiedName })
+            let signedURLS = {
+                rubricURL: "",
+                documentURL: "",
+            }
+            await generatePreSignedPutUrl(rubricBucket ,fullyQualifiedName, "application/pdf").then((url) => {
+                signedURLS.rubricURL = url
             })
+            await generatePreSignedPutUrl(gradeBucket, fullyQualifiedName, "application/pdf").then((url) => {
+                signedURLS.documentURL = url
+            })
+
+            res.status(200)
+            res.json({ "signedURLS": signedURLS, 'fileName': fullyQualifiedName })
         }
     } else {
         res.status(400)

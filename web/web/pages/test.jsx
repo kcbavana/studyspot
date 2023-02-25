@@ -5,9 +5,6 @@ import styled from "styled-components"
 
 
 export default function test() {
-
-    
-
     const handleChange = async (e)=> {
         let file = e.target.files[0];
         const requestObject = {
@@ -23,6 +20,9 @@ export default function test() {
         await fetch('/api/uploadPaper', requestObject)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
+        })
+        /*.then(data => {
             fetch(data["signedUrl"], {
                 headers : {'content-type':file.type},
                 method: 'PUT',
@@ -32,7 +32,7 @@ export default function test() {
             }).then((txt) => {
                 console.log(txt)
             })
-        })
+        })*/
     }
 
     return(
