@@ -70,6 +70,10 @@ const Container = styled.div`
 		background: white;
 }
 
+ul {
+  color: black;
+}
+
   color: white;
 
 `;
@@ -90,6 +94,9 @@ export default function home() {
     <Container>
       <img src="/images/logo-better.png" alt="" />
       <h2>One stop destination to study together.</h2>
+      <ul>
+        <li><a href = "/spots">SPOTS</a></li>
+      </ul>
       <div>
         Virtual study spaces have become increasingly popular in recent years, and for good reason. There are numerous advantages to virtual study spaces that make them a superior option compared to traditional physical study spaces.
         First and foremost, virtual study spaces offer convenience and accessibility. With virtual study spaces, students can access their study environment from anywhere with an internet connection. This means that students can study from the comfort of their own home, a coffee shop, or even while traveling. This flexibility is particularly beneficial for students who may have other commitments, such as work or family responsibilities, that make it difficult to attend physical study spaces during set hours.
