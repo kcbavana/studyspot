@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Jam from 'jam-react';
 import styled from "styled-components";
 
 const Container = styled.div`
