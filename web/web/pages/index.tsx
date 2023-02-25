@@ -8,10 +8,13 @@ const Container = styled.div`
   background: white;
 
   .header {
-    background-image: url("/images/cover.jpg");
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0.25)
+      ),
+      url("/images/cover.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    filter: brightness(0.5);
   }
 
   .logo {
@@ -28,7 +31,7 @@ export default function home() {
   return (
     <Container>
       <div className="header">
-        <img className="logo" src="/images/logo-better.png" alt="" />
+        <img className="logo" src="/images/Grade_Spot_Logo.png" alt="" />
         <h1 className="title">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit,
           laudantium!
