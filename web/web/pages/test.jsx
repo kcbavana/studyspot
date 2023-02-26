@@ -1,6 +1,10 @@
 import React from "react"
 import styled from "styled-components"
+import Submission from "../components/submission"
 
+const styledSubmissionContainer = styled.div`
+    min-height: 300px;
+`
 
 
 
@@ -37,6 +41,9 @@ export default function test() {
 
     return(
         <>
+            <styledSubmissionContainer>
+                <Submission/>
+            </styledSubmissionContainer>
             <input type="file"
                 onChange={handleChange}/>
         </>
