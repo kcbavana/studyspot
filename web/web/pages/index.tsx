@@ -114,6 +114,7 @@ const Container = styled.div`
 `;
 
 export default function home() {
+
   return (
     <Container>
       <div className="header">
