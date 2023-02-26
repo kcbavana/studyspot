@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Submission from "../components/submission"
-
-import Navbar from "../components/navbar";
 
 const StyledSubmissionContainer = styled.div`
-    height: 500px;
-`
+  height: 500px;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -228,9 +225,10 @@ const Container = styled.div`
   }
 `;
 
-export default function home() {
+export default function Home() {
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
+  const [text3, setText3] = useState("");
 
   const handleText1Change = (event) => {
     setText1(event.target.value);
@@ -240,10 +238,25 @@ export default function home() {
     setText2(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Handle submission logic here
     console.log("Text 1:", text1);
     console.log("Text 2:", text2);
+    try {
+      const response = await fetch("/api/getResults", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ assignment: text1, rubric: text2 }),
+      });
+      const data = await response.json(); // Wait for JSON data to be parsed
+      console.log(data["choices"][0]["text"]);
+      setText3(data["choices"][0]["text"]);
+    } catch (error) {
+      // Handle error here
+      setText3(error);
+    }
   };
   return (
     <Container>
@@ -279,17 +292,14 @@ export default function home() {
         </div>
         <p className="body-text">
           GradeSpot is is a platform for automated grading that utilizes
-          chatGPT, an AI-powered language model, to evaluate students'
-          assignments. The website's algorithm compares the submitted text
-          against the rubric's requirements to identify areas where the student
-          has met or exceeded the expectations and areas where they need to
-          improve. Based on the analysis, the system assigns a grade to the
+          chatGPT, an AI-powered language model, to evaluate students&lsquo;
+          assignments. The website&lsquo;s algorithm compares the submitted text
+          against the rubric&lsquo;s requirements to identify areas where the
+          student has met or exceeded the expectations and areas where they need
+          to improve. Based on the analysis, the system assigns a grade to the
           assignment and provides a detailed report outlining the strengths and
           weaknesses of the submission.
         </p>
-        <StyledSubmissionContainer>
-          <Submission/>
-        </StyledSubmissionContainer>
       </div>
 
       <div className="text-result" id="text-result">
@@ -318,16 +328,8 @@ export default function home() {
 
       <div className="output" id="output">
         <div className="output-content">
-          <h3 className="grade">A</h3>
-          <p className="output-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
-            dicta tempora rerum impedit sed atque animi? At recusandae,
-            excepturi molestiae rem odio, quidem modi laborum cupiditate labore
-            quaerat error alias. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Pariatur, maxime neque similique incidunt dolore
-            dicta perspiciatis, ipsa quidem eaque tempora, deserunt sed iusto.
-            Velit est voluptates reprehenderit excepturi voluptatum dolor!
-          </p>
+          {/* <h3 className="grade">A</h3> */}
+          <p className="output-text">{text3}</p>
         </div>
       </div>
 
