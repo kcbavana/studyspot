@@ -25,7 +25,7 @@ const StyledButton = styled.button`
 
 
 
-export default function submission() {
+export default function Submission() {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [text3, setText3] = useState('');
