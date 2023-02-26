@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Submission from "../components/submission"
 
 import Navbar from "../components/navbar";
+
+const StyledSubmissionContainer = styled.div`
+    height: 500px;
+`
 
 const Container = styled.div`
   width: 100%;
@@ -282,6 +287,9 @@ export default function home() {
           assignment and provides a detailed report outlining the strengths and
           weaknesses of the submission.
         </p>
+        <StyledSubmissionContainer>
+          <Submission/>
+        </StyledSubmissionContainer>
       </div>
 
       <div className="text-result" id="text-result">

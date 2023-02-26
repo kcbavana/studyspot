@@ -20,7 +20,6 @@ export default async (req, res) => {
             presence_penalty: 0.6,
             stop: [" Human:", " AI:"]
         }
-        console.log(apiBody)
 
         // Send the API request
         const response = await fetch('https://api.openai.com/v1/completions', {
