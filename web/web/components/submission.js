@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import styled from "styled-components"
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const styledContainer = styled.div`
-    min-height: 200px;
-    
-`
-
+  min-height: 200px;
+`;
 
 const StyledButton = styled.button`
   background-color: #1e88e5;
@@ -24,8 +22,8 @@ const StyledButton = styled.button`
 `;
 
 export default function submission() {
-  const [text1, setText1] = useState('');
-  const [text2, setText2] = useState('');
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
 
   const handleText1Change = (event) => {
     setText1(event.target.value);
@@ -37,15 +35,25 @@ export default function submission() {
 
   const handleSubmit = () => {
     // Handle submission logic here
-    console.log('Text 1:', text1);
-    console.log('Text 2:', text2);
+    console.log("Text 1:", text1);
+    console.log("Text 2:", text2);
   };
 
   return (
     <styledContainer>
-      <div style={{ display: 'flex', height: "400px"}}>
-        <input type="text" value={text1} onChange={handleText1Change} style={{ flex: 1 }} />
-        <input type="text" value={text2} onChange={handleText2Change} style={{ flex: 1 }} />
+      <div style={{ display: "flex", height: "400px" }}>
+        <input
+          type="text"
+          value={text1}
+          onChange={handleText1Change}
+          style={{ flex: 1 }}
+        />
+        <input
+          type="text"
+          value={text2}
+          onChange={handleText2Change}
+          style={{ flex: 1 }}
+        />
       </div>
       <StyledButton onClick={handleSubmit}>Grade</StyledButton>
     </styledContainer>
