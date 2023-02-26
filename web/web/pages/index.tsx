@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Submission from "../components/submission"
 
 import Navbar from "../components/navbar";
+
+const StyledSubmissionContainer = styled.div`
+    height: 500px;
+`
 
 const Container = styled.div`
   width: 100%;
@@ -155,6 +160,9 @@ export default function home() {
           alias corrupti. Hic, amet! Commodi, quisquam facere tenetur quam ea
           eveniet minus.
         </p>
+        <StyledSubmissionContainer>
+          <Submission/>
+        </StyledSubmissionContainer>
       </div>
     </Container>
   );
