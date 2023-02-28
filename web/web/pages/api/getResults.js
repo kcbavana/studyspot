@@ -4,11 +4,11 @@ export default async function getResults(req, res) {
   const body = req.body;
   if (req.method == "POST") {
     const engineeredPrompt =
-      'Grade the following assignment: "' +
+      'Give a grade (A,B,C,D) for the following assignment: "' +
       body.assignment +
       '" according to this rubric: "' +
       body.rubric +
-      '"';
+      '". Also provide some justification for the given grade. Offer some ways to improve the assignment. Put a linebreak between the grade, justification, and advice sections';
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.OPEN_API}`, // Replace with your API key or token
